@@ -1,0 +1,46 @@
+---------------------------Practice projetc arctitechture--------------------------------
+		
+				DURATION : 5DAYS
+				
+********************* READ SOME BLOGS ABOUT THE PROJECT STRUCTURE FIRST. ****************
+				
+				
+* Use TS to write all the backend code.
+	-> Write class based codes.
+	-> Write test driven codes.
+	
+	
+* Use Postgress, Mongodb, Elastic Search And Redis as DB.
+	-> Use azure postgress for the production.
+		-> this will contain all the post and user data.
+	-> Use mongodb to store all the comments and replication of user data.
+	-> Use elastic search to store all the events emmited by event bus.
+	-> Redis to cache data.
+	
+* Use Azure bloob storage to store files and images.
+
+* Use Node Kafka as the event bus.
+
+* Use updated Docker desktop and Kubernetes. -> with ingress -> minikube
+
+* Use Docker compose to automate the build.
+
+
+
+* Use Next.js for the frontend and use it's all the serverside rendaring features.
+	-> Use cypress for the end-to-end testing.
+	-> Use service worker to connect the websocket.
+	-> Add PWA support.
+	-> Use typescript.
+	-> Use bootstrap
+
+	
+
+
+
+******************** USE MACHINE INSTANCE TO PUBLISH APP ************************
+			-> AKS -> Containere services
+		
+
+
+

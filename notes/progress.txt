@@ -1,0 +1,2 @@
+create a class to catch validation errors respectively for signup and login. //
+create a class to catch mongodb validation error.//

@@ -1,0 +1,31 @@
+Install docker desktop. //done
+Install Kubernetes. // done
+Install ingress-nginx. // Done
+Install Skaffold. // Done
+Install postgress// Done
+
+//USE TS EVERYWHERE****
+create auth backend // Done
+create docker file // Done
+create ingress infra/k8s and put a ingress file and apply it. // Done
+check if the ingress is working // Done
+create skaffold file and docker images // Done
+check if the skaffold is working //Done
+Connect azure postgress//
+Write prisma model for users//
+
+*******MOVE TO THE ENDPOINT******
+
+----endpoints----
+create user,
+update user,
+delete user,
+write test and run all of them.
+
+
+//
+Create a common module folder
+move all the middlewares and the independent handlers to this module
+and publush it to the npm.
+
+

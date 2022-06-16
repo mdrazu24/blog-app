@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2beta28
+kind : Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  artifacts:
+    - image: alifhossain/authentication
+      context: authentication
+      docker :
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "**/**"
+  local:
+    push: false 
+    # this will not work if there's no local cluster like minikube or others.
+    

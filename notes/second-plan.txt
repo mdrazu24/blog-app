@@ -1,0 +1,5 @@
+Create a simple app with only docker.
+DO NOT USE KUBERNETES
+
+-> use docker compose to compose the application
+-> use container services in azure to publish it.

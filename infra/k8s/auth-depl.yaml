@@ -1,0 +1,42 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: authentication-depl
+spec:
+  replicas : 1
+  selector:
+    matchLabels:
+      app: authentication
+  template:
+    metadata:
+      labels:
+        app: authentication
+    spec:
+      containers:
+      - image: alifhossain/authentication:latest
+        name: authentication
+        env :
+          - name: POSTGRES_USER
+            valueFrom : 
+              secretKeyRef :
+                name : postgres
+                key : POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom : 
+              secretKeyRef :
+                name : postgres
+                key : POSTGRES_PASSWORD
+        
+---
+apiVersion : v1
+kind : Service
+metadata:
+  name : authentication-srv
+spec :
+  selector :
+    app : authentication
+  ports :
+    - name: authentication
+      protocol : TCP
+      port : 3000
+      targetPort : 3000
