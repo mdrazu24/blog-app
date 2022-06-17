@@ -11,19 +11,22 @@ create ingress infra/k8s and put a ingress file and apply it. // Done
 check if the ingress is working // Done
 create skaffold file and docker images // Done
 check if the skaffold is working //Done
-Connect azure postgress//
-Write prisma model for users//
+Connect azure postgress// Done
+Write prisma model for users// Done
 
 *******MOVE TO THE ENDPOINT******
 
 ----endpoints----
-create user,
+create user, Set a session to it.//
+Login User, Set a session to it.//
 update user,
-delete user,
 write test and run all of them.
-
-
 //
+
+*****Client side******
+check the server side rendaring if it's render everytime or not on change page or url.// 
+
+
 Create a common module folder
 move all the middlewares and the independent handlers to this module
 and publush it to the npm.

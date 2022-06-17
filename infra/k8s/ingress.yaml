@@ -16,4 +16,12 @@ spec:
               name: authentication-srv
               port:
                 number: 3000
+        - path: /db/auth
+          pathType: Prefix
+          backend:
+            service:
+              name: postgres-auth-srv
+              port:
+                number: 5432
+      
                 

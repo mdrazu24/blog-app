@@ -34,8 +34,6 @@ spec:
       volumes:
       - name: postgres-database-storage
 
-
-
 ---
 apiVersion: v1
 kind: Service

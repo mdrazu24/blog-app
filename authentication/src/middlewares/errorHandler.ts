@@ -7,7 +7,12 @@ export const errorHandler = (err : Error, req : Request, res : Response, next : 
         return res.status(err.statusCode).json({errors : serializedErrors});
     }
 
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
+    // console.error(err.stack);
+    console.log(err.stack)
+
+    res.status(500).send({errors: [{message : "Something went wrong"}]});
 
 }
+
+
+//write a class to catch database validation error
