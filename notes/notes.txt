@@ -17,11 +17,14 @@ Write prisma model for users// Done
 *******MOVE TO THE ENDPOINT******
 
 ----endpoints----
-create user, Set a session to it.//
-Login User, Set a session to it.//
-update user,
-write test and run all of them.
-//
+create user, Set a session to it.//Done
+Login User, Set a session to it.//Done
+update user //
+write test and run all of them.//
+Create a npm package with the common files//
+Install the package and replace with others//
+
+
 
 *****Client side******
 check the server side rendaring if it's render everytime or not on change page or url.// 
