@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 
 
 export const authUser = async (req: Request, res: Response,  next : NextFunction) => { 
-
+    // console.log(jwt.verify(req.session!.jwt, process.env.JWT_SECRET!))
     if(req.session && req.session.jwt && jwt.verify(req.session.jwt, process.env.JWT_SECRET!)) {
         next()
     }else {

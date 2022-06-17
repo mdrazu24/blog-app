@@ -12,9 +12,10 @@ import { PrismaClient } from '@prisma/client'
 
 const app = express()
 
-interface UserInfo {
+export interface UserInfo {
   fullName: string
-  email: string
+  email: string,
+  id : string
 }
 
 declare global {
