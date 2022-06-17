@@ -12,6 +12,19 @@ import { PrismaClient } from '@prisma/client'
 
 const app = express()
 
+interface UserInfo {
+  fullName: string
+  email: string
+}
+
+declare global {
+  namespace Express {
+    interface Request {
+      currentUser?: UserInfo
+    }
+  }
+}
+
 //this check is to catch the unexpected uncaught errors while responding to the pending request.
 process.on('uncaughtException', (err) => {
     console.log("uncaughtException Error... System will terminate soon")

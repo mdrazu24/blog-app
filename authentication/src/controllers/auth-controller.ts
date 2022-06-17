@@ -1,13 +1,18 @@
-import { Request, Response } from "express"
+import { request, Request, Response } from "express"
 import { prisma as prismaClient } from "../app"
 import { BadRequest } from "../errors/BadRequest"
-import { Password } from '../services/Password';
+import { Password } from "../services/Password"
 import jwt from "jsonwebtoken"
 
-export const userTestRoute = async (req: Request, res: Response) => {
-  const allUse = await prismaClient.user.findMany()
 
-  console.log(req.session)
+
+
+export const userTestRoute = async (req: Request, res: Response) => {
+  const allUse = await prismaClient.user.findMany({
+    select: { email: true, password: false, fullName: true, id: true },
+  })
+
+  console.log(req.currentUser)
 
   res.send(allUse)
 }
@@ -33,7 +38,7 @@ export const createAccount = async (req: Request, res: Response) => {
     },
   })
 
-  const token =  jwt.sign(
+  const token = jwt.sign(
     { userId: user.id, email: user.email },
     process.env.JWT_SECRET!,
     {
@@ -43,7 +48,7 @@ export const createAccount = async (req: Request, res: Response) => {
   //setup a session
 
   req.session = {
-    jwt: token
+    jwt: token,
   }
 
   //set a user id in the session
@@ -51,20 +56,23 @@ export const createAccount = async (req: Request, res: Response) => {
   res.status(200).json("Signup successful")
 }
 
-
-export const login = async (req: Request, res: Response) => { 
-  const {password, email} = req.body
-  const user  = await prismaClient.user.findFirst({
+export const login = async (req: Request, res: Response) => {
+  const { password, email } = req.body
+  const user = await prismaClient.user.findFirst({
     where: { email },
   })
 
-  if(!user){
+  if (!user) {
     throw new BadRequest("Credentials does not exists.", 500)
   }
 
-  const isValid = await Password.compare(password, user.password, process.env.SALT!)
+  const isValid = await Password.compare(
+    password,
+    user.password,
+    process.env.SALT!
+  )
 
-  if(!isValid){
+  if (!isValid) {
     throw new BadRequest("Credentials does not exists.", 500)
   }
 
@@ -81,9 +89,10 @@ export const login = async (req: Request, res: Response) => {
     jwt: token,
   }
 
+  
   //set a user id in the session
 
-  res.status(200).json({status : "Login successful", ...user})
+  const { password: uPass, ...userData } = user
 
+  res.status(200).json({ status: "Login successful", user: { userData } })
 }
-
