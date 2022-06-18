@@ -13,7 +13,7 @@ import { PrismaClient } from '@prisma/client'
 const app = express()
 
 export interface UserInfo {
-  fullName: string
+  fullName?: string
   email: string,
   id : string
 }

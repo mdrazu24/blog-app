@@ -12,7 +12,7 @@ export const userTestRoute = async (req: Request, res: Response) => {
     select: { email: true, password: false, fullName: true, id: true },
   })
 
-  // console.log(req.currentUser)
+  console.log(req.currentUser)
 
   res.send(allUse)
 }
@@ -53,12 +53,13 @@ export const createAccount = async (req: Request, res: Response) => {
 
   //set a user id in the session
 
-  // req.currentUser = {
-  //   id: user.id.toString(),
-  //   email: user.email,
-  //   fullName: user.fullName,
-  // }
+  req.currentUser = {
+    id: user.id.toString(),
+    email: user.email,
+    fullName: user.fullName,
+  }
 
+  
   res.status(200).json("Signup successful")
 }
 
@@ -96,12 +97,12 @@ export const login = async (req: Request, res: Response) => {
   }
 
   
-  //set a user id in the session
-//  req.currentUser = {
-//    id: user.id.toString(),
-//    email: user.email,
-//    fullName: user.fullName,
-//  }
+  // set a user id in the session
+ req.currentUser = {
+   id: user.id.toString(),
+   email: user.email,
+   fullName: user.fullName,
+ }
   const { password: uPass, ...userData } = user
 
   res.status(200).json({ status: "Login successful", user: { userData } })
@@ -148,7 +149,7 @@ export const updateBasicInfo = async (req: Request, res: Response) => {
   }
 
 const token = jwt.sign(
-  { userId: user.id, email: user.email },
+  { id: user.id, email: user.email },
   process.env.JWT_SECRET!,
   {
     expiresIn: "24h",
@@ -161,11 +162,11 @@ req.session = {
 }
 
 //set a user id in the session
-// req.currentUser = {
-//   id: user.id.toString(),
-//   email: user.email,
-//   fullName: user.fullName,
-// }
+req.currentUser = {
+  id: user.id.toString(),
+  email: user.email,
+  fullName: user.fullName,
+}
   
   const {password, ...data} = user
 

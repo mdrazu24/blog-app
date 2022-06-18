@@ -19,7 +19,7 @@ Write prisma model for users// Done
 ----endpoints----
 create user, Set a session to it.//Done
 Login User, Set a session to it.//Done
-update user //
+update user //Done
 write test and run all of them.//
 Create a npm package with the common files//
 Install the package and replace with others//
@@ -27,11 +27,6 @@ Install the package and replace with others//
 
 
 *****Client side******
-check the server side rendaring if it's render everytime or not on change page or url.// 
-
-
-Create a common module folder
-move all the middlewares and the independent handlers to this module
-and publush it to the npm.
-
+check the server side rendaring if it's render everytime or not on change page or url.//
+//
 
