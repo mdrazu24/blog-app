@@ -25,8 +25,22 @@ Create a npm package with the common files//
 Install the package and replace with others//
 
 
-
 *****Client side******
+Work on user authenticaion.//
 check the server side rendaring if it's render everytime or not on change page or url.//
 //
+
+
+************Authentication and Authorization*********
+Need to create a short lived storage to store the banned user.
+
+
+*******Backend important feature******
+use a worker to perform high computing work (image processing, video processing) on other core.//
+
+*******Frontend important feature******
+use a service worker to perform high computing work (image processing, video processing) on other core.//
+connect websockets //
+
+
 

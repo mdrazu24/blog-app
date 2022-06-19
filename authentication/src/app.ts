@@ -7,8 +7,6 @@ import { errorHandler } from './middlewares/errorHandler'
 import { NotFound } from './errors/notFound'
 import { AuthRouter } from './routes/auth-route'
 // import {Client} from 'pg'
-import { PrismaClient } from '@prisma/client'
-
 
 const app = express()
 
@@ -33,7 +31,6 @@ process.on('uncaughtException', (err) => {
     process.exit(1)
 })
 
-export const prisma = new PrismaClient()
 app.set('trust proxy', true)
 app.use(json())
 app.use(cookieSession(
@@ -53,7 +50,7 @@ app.use(morgan('dev')) //to log the request in the console.
 app.use('/api/v1', AuthRouter) //auth router is used to create user account and  other controls.
 
 
-
+console.log(process.argv)
 app.all('*', (req: Request, res: Response) => { 
     throw new NotFound("Route not found.")
 }) //this is used to catch the error if the route is not found.
@@ -61,36 +58,4 @@ app.all('*', (req: Request, res: Response) => {
 app.use(errorHandler) //this is a error handler middleware.
 
 
-async function startDb ()  {
-await prisma.$connect().then(() => {console.log("Database connected")}).catch(err => {console.log(err)})
-
-//this is to connect the database with pg library.
-  // await client
-  //   .connect()
-  //   .then((asd) => {
-  //     console.log("database connected")
-    
-  //     // console.log(client)
-  //   })
-  //   .catch((err : Error)  => {
-
-  //     console.log(err)
-  //   })
-}
-
-
-const server = app.listen(3000, () => { 
-    console.log('listenign on port 3000')
-}) // creating a server and storing it's value in a variable.
-
-startDb()
-
-
-// this is to make sure the server does not go down before completing the pending request when there is an error.
-process.on("unhandledRejection", (err : Error) => {
-  console.log("unhandledRejection Error... System will terminate soon")
-  console.log(err.name, err.message, err.stack)
-  server.close(() => {
-    process.exit(1)
-  })
-})
+export default app;

@@ -1,9 +1,10 @@
 import {  Request, Response } from "express"
-import { prisma as prismaClient, UserInfo } from "../app"
+import {  UserInfo } from "../app"
+import { prisma as prismaClient } from "../client"
+// import prismaClient from '../test/client'
 import { BadRequest } from "../errors/BadRequest"
 import { Password } from "../services/Password"
 import jwt from "jsonwebtoken"
-
 
 
 
@@ -60,7 +61,7 @@ export const createAccount = async (req: Request, res: Response) => {
   }
 
   
-  res.status(200).json("Signup successful")
+  res.status(201).json("Signup successful")
 }
 
 export const login = async (req: Request, res: Response) => {
