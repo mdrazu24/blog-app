@@ -13,7 +13,7 @@ export const userTestRoute = async (req: Request, res: Response) => {
     select: { email: true, password: false, fullName: true, id: true },
   })
 
-  console.log(req.currentUser)
+  // console.log(req.currentUser)
 
   res.send(allUse)
 }
@@ -38,7 +38,6 @@ export const createAccount = async (req: Request, res: Response) => {
       password: hashshedPassowrd,
     },
   })
-
   const token = jwt.sign(
     { id: user.id, email: user.email },
     process.env.JWT_SECRET!,

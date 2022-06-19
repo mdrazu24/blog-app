@@ -13,6 +13,7 @@ create skaffold file and docker images // Done
 check if the skaffold is working //Done
 Connect azure postgress// Done
 Write prisma model for users// Done
+check auth-route by malfunctioning the cookie //
 
 *******MOVE TO THE ENDPOINT******
 
@@ -20,9 +21,10 @@ Write prisma model for users// Done
 create user, Set a session to it.//Done
 Login User, Set a session to it.//Done
 update user //Done
-write test and run all of them.//
+write test and run all of them.//Done
 Create a npm package with the common files//
 Install the package and replace with others//
+
 
 
 *****Client side******

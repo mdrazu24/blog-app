@@ -6,10 +6,8 @@ import {json} from 'body-parser'
 import { errorHandler } from './middlewares/errorHandler'
 import { NotFound } from './errors/notFound'
 import { AuthRouter } from './routes/auth-route'
-// import {Client} from 'pg'
 
 const app = express()
-
 export interface UserInfo {
   fullName?: string
   email: string,
@@ -41,12 +39,6 @@ app.use(cookieSession(
 app.use(morgan('dev')) //to log the request in the console.
 
 
-
-// const client = new Client(
-//   "postgres://root:2543@postgres-auth-srv:5432/blogapp"
-// )
-
-
 app.use('/api/v1', AuthRouter) //auth router is used to create user account and  other controls.
 
 
@@ -57,4 +49,4 @@ app.all('*', (req: Request, res: Response) => {
 app.use(errorHandler) //this is a error handler middleware.
 
 
-export default app;
+export {app};

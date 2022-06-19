@@ -1,6 +1,6 @@
 
-import { prisma } from "./client"
-import app from './app'
+import prisma  from "./client"
+import {app} from './app'
 
 async function startDb() {
   await prisma
@@ -12,21 +12,9 @@ async function startDb() {
       console.log(err)
     })
 
-  //this is to connect the database with pg library.
-  // await client
-  //   .connect()
-  //   .then((asd) => {
-  //     console.log("database connected")
-
-  //     // console.log(client)
-  //   })
-  //   .catch((err : Error)  => {
-
-  //     console.log(err)
-  //   })
 }
 
-export const server = app.listen(3000, () => {
+const server = app.listen(3000, () => {
   console.log("listenign on port 3000")
 }) // creating a server and storing it's value in a variable.
 

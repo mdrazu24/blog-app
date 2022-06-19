@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --respawn --poll --exit-child src/app.ts",
+    "start": "ts-node-dev --respawn --poll --exit-child src/server.ts",
     "test": "jest --watchAll --no-cache"
   },
   "jest": {
@@ -40,7 +40,7 @@
     "@types/jest": "^28.1.2",
     "@types/supertest": "^2.0.12",
     "jest": "^28.1.1",
-    "jest-mock-extended": "2.0.4",
+    "jest-mock-extended": "^2.0.6",
     "prisma": "^3.15.2",
     "supertest": "^6.2.3",
     "ts-jest": "^28.0.5"

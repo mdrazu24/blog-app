@@ -11,6 +11,8 @@ jest.mock("../client", () => ({
 beforeAll (() => {
 process.env.SALT = "some other stuff"
 process.env.JWT_SECRET = "hah ah ah aha h"
+
+prisma.$connect()
 })
 
 beforeEach(() => {
