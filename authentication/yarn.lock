@@ -291,6 +291,20 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@hrioymahmud/blogcommon@^1.0.1":
+  "integrity" "sha512-1AhbI42UG8fmeta7Bv/i4Yz6lsnG+mwt/Fzs/qaDq8gwSneljtuDMfohqfBk4kl+aI8OabTRpJI5EVP3yIQNDA=="
+  "resolved" "https://registry.npmjs.org/@hrioymahmud/blogcommon/-/blogcommon-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "@types/cookie-session" "^2.0.44"
+    "@types/express" "^4.17.13"
+    "@types/express-validator" "^3.0.0"
+    "@types/jsonwebtoken" "^8.5.8"
+    "cookie-session" "^2.0.0"
+    "express" "^4.18.1"
+    "express-validator" "^6.14.2"
+    "jsonwebtoken" "^8.5.1"
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   "integrity" "sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ=="
   "resolved" "https://registry.npmjs.org/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz"
@@ -665,6 +679,13 @@
     "@types/node" "*"
     "@types/qs" "*"
     "@types/range-parser" "*"
+
+"@types/express-validator@^3.0.0":
+  "integrity" "sha512-LusnB0YhTXpBT25PXyGPQlK7leE1e41Vezq1hHEUwjfkopM1Pkv2X2Ppxqh9c+w/HZ6Udzki8AJotKNjDTGdkQ=="
+  "resolved" "https://registry.npmjs.org/@types/express-validator/-/express-validator-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "express-validator" "*"
 
 "@types/express@*", "@types/express@^4.17.13":
   "integrity" "sha512-6bSZTPaTIACxn48l50SR+axgrqm6qXFIxrdAKaG6PaJk3+zuUr35hBlgT7vOmJcum+OEaIBLtHV/qloEAFITeA=="
@@ -1495,10 +1516,10 @@
   "resolved" "https://registry.npmjs.org/express-async-errors/-/express-async-errors-3.1.1.tgz"
   "version" "3.1.1"
 
-"express-validator@^6.14.1":
-  "integrity" "sha512-4w7gn/jPW1a+r833xBqpu4pL7XiiScDwlbBIMtiqUEt/MVNqR94HOHyKLcCtnqCnEPiqrX1Mqt9l/SVN/iqeLA=="
-  "resolved" "https://registry.npmjs.org/express-validator/-/express-validator-6.14.1.tgz"
-  "version" "6.14.1"
+"express-validator@*", "express-validator@^6.14.1", "express-validator@^6.14.2":
+  "integrity" "sha512-8XfAUrQ6Y7dIIuy9KcUPCfG/uCbvREctrxf5EeeME+ulanJ4iiW71lWmm9r4YcKKYOCBMan0WpVg7FtHu4Z4Wg=="
+  "resolved" "https://registry.npmjs.org/express-validator/-/express-validator-6.14.2.tgz"
+  "version" "6.14.2"
   dependencies:
     "lodash" "^4.17.21"
     "validator" "^13.7.0"

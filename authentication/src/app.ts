@@ -3,8 +3,10 @@ import morgan from 'morgan'
 import cookieSession from 'cookie-session'
 require('express-async-errors')
 import {json} from 'body-parser'
-import { errorHandler } from './middlewares/errorHandler'
-import { NotFound } from './errors/notFound'
+// import { errorHandler } from './middlewares/errorHandler'
+
+// import { NotFound } from './errors/notFound'
+import { NotFound, errorHandler } from '@hrioymahmud/blogcommon'
 import { AuthRouter } from './routes/auth-route'
 
 const app = express()

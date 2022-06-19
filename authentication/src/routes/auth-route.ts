@@ -7,8 +7,9 @@ import {
 
 } from "../controllers/auth-controller"
 import { CREATE_ACCOUNT, LOGIN } from "../validation/auth-validation"
-import {validateRequest} from '../errors/validationError'
-import { authUser } from '../middlewares/auth-user';
+// import {validateRequest} from '../errors/validationError'
+import {validateRequest, authUser} from '@hrioymahmud/blogcommon'
+// import { authUser } from '../middlewares/auth-user';
 
 
 

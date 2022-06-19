@@ -2,7 +2,9 @@ import {  Request, Response } from "express"
 import {  UserInfo } from "../app"
 import prismaClient  from "../client"
 // import prismaClient from '../test/client'
-import { BadRequest } from "../errors/BadRequest"
+// import { BadRequest } from "../errors/BadRequest"
+import { BadRequest } from "@hrioymahmud/blogcommon"
+// import {BadRequest} from '../../../library/build/index'
 import { Password } from "../services/Password"
 import jwt from "jsonwebtoken"
 
