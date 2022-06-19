@@ -50,7 +50,6 @@ app.use(morgan('dev')) //to log the request in the console.
 app.use('/api/v1', AuthRouter) //auth router is used to create user account and  other controls.
 
 
-console.log(process.argv)
 app.all('*', (req: Request, res: Response) => { 
     throw new NotFound("Route not found.")
 }) //this is used to catch the error if the route is not found.

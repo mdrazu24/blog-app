@@ -1,6 +1,6 @@
 import {  Request, Response } from "express"
 import {  UserInfo } from "../app"
-import { prisma as prismaClient } from "../client"
+import prismaClient  from "../client"
 // import prismaClient from '../test/client'
 import { BadRequest } from "../errors/BadRequest"
 import { Password } from "../services/Password"
