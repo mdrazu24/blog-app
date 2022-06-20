@@ -29,7 +29,7 @@
 
 * Use Next.js for the frontend and use it's all the serverside rendaring features.
 	-> Use cypress for the end-to-end testing.
-	-> Use service worker to connect the websocket.
+	-> Use service worker to connect the websocket. -> check deepstream.io
 	-> Add PWA support.
 	-> Use typescript.
 	-> Use bootstrap

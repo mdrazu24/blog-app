@@ -28,6 +28,10 @@ Install the package and replace with others//Done
 
 
 *****Client side******
+Create dockerfile//
+Create depl & service//
+Add to skaffold//
+Run on pods//
 Work on user authenticaion.//
 check the server side rendaring if it's render everytime or not on change page or url.//
 //
