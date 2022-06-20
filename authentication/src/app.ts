@@ -41,7 +41,7 @@ app.use(cookieSession(
 app.use(morgan('dev')) //to log the request in the console.
 
 
-app.use('/api/v1', AuthRouter) //auth router is used to create user account and  other controls.
+app.use('/api/v1/auth', AuthRouter) //auth router is used to create user account and  other controls.
 
 
 app.all('*', (req: Request, res: Response) => { 

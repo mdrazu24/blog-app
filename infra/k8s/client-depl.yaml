@@ -13,7 +13,7 @@ spec:
         app: client
     spec:
       containers:
-      - image: alifhossain/client:latest
+      - image: alifhossain/client
         name: client
         
         
