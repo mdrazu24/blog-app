@@ -14,7 +14,7 @@ check if the skaffold is working //Done
 Connect azure postgress// Done
 Write prisma model for users// Done
 check auth-route by malfunctioning the cookie //Done
-
+Add redis to the auth service//
 *******MOVE TO THE ENDPOINT******
 
 ----endpoints----
@@ -30,10 +30,11 @@ Install the package and replace with others//Done
 *****Client side******
 Create dockerfile// Done
 Create depl & service//Done
-add to ingress//
-Add to skaffold//
-Run on pods//
+add to ingress// Done
+Add to skaffold//Done
+Run on pods//Done
 Work on user authenticaion.//
+try react-query//
 check the server side rendaring if it's render everytime or not on change page or url.//
 use cypress for testing//
 
