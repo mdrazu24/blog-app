@@ -35,6 +35,7 @@ Add to skaffold//Done
 Run on pods//Done
 Work on user authenticaion.//
 try react-query//
+initialize redux-toolkit//
 check the server side rendaring if it's render everytime or not on change page or url.//
 use cypress for testing//
 
