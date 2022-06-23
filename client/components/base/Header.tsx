@@ -4,17 +4,19 @@ import { useQuery } from "react-query"
 import axios from 'axios'
 import {logout, login, changeState} from '../../store/userSlice'
 import {useAppDispatch, useAppSelector} from '../../store/hooks'
-
+import { toast } from 'react-toastify'
 
 const Header = () => {
   const dispatch = useAppDispatch()
   const isLogin = useAppSelector(state => state.users.isLogin)
   const [isLoading, setIsLoading] = useState(true)
+  const notify = () => toast.success('Logout successfull.')
 
   const userSignout = async () => {
     const { data } = await axios.get("/api/v1/auth/logout")
     dispatch(logout())
     dispatch(changeState({isLogin: false}))
+    notify()
     localStorage.removeItem('user')
     return data
   }

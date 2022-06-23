@@ -10,11 +10,13 @@ import {
   QueryClientProvider
 } from "react-query"
  import { ReactQueryDevtools } from "react-query/devtools"
+  import 'react-toastify/dist/ReactToastify.css';
 
 import StoreProvide from '../store/index'
 import { useEffect } from "react"
 import {changeState} from '../store/userSlice'
 import { store } from "../store/index"
+  import { ToastContainer } from 'react-toastify';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const client = new QueryClient()
@@ -37,8 +39,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <StoreProvide>
       <QueryClientProvider client={client}>
-        <Header  />
+        <Header />
         <Component {...pageProps} />
+        <ToastContainer position="bottom-right" hideProgressBar={true} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </StoreProvide>
