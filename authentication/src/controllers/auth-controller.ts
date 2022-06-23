@@ -60,9 +60,10 @@ export const createAccount = async (req: Request, res: Response) => {
     email: user.email,
     fullName: user.fullName,
   }
+  const { password: uPass, ...userData } = user
 
-  
-  res.status(201).json("Signup successful")
+  res.status(200).json({ status: "Signup successful", user: { userData } })
+
 }
 
 export const login = async (req: Request, res: Response) => {
@@ -176,4 +177,10 @@ req.currentUser = {
       status: "Update successful",
       user: {...data}
     })
+}
+
+export const userLogout = async (req: Request, res: Response) => { 
+  req.session = null
+  req.currentUser = undefined
+  res.status(200).json({message : "Operation successful."})
 }

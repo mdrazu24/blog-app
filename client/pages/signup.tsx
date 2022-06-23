@@ -1,14 +1,46 @@
-import { NextPage } from "next"
+import { GetServerSideProps, NextPage } from "next"
 import Link from "next/link"
 import React from "react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
+import axios from 'axios'
+import { useRouter } from "next/router"
+import { useQuery } from "react-query"
+import { ErrorInterface } from "../utils/ErrorInterface"
+import { useAppDispatch } from "../store/hooks"
+import { register } from "../store/userSlice"
+
+
 
 const Signup: NextPage = () => {
+  const router = useRouter()
+const dispatch = useAppDispatch()
+
+
+  const querySignup = async () => {
+    const { data } = await axios.post("/api/v1/auth/create-user", {
+      ...formik.values,
+    })
+        dispatch(register({ user: data.user.userData }))
+
+    localStorage.setItem("user", JSON.stringify(data.user.userData))
+
+    return data
+  }
 
      const handeSignup = (e : any) => {
-        console.log(formik.values)
+        signupInfo.refetch()
      }
+
+     const signupInfo = useQuery("login", querySignup, {
+       enabled: false,
+       refetchOnWindowFocus: false,
+       retry: false,
+     })
+
+     const errorInfo = signupInfo.error as ErrorInterface
+
+     if (signupInfo.isSuccess) router.push("/")
 
 
   const formik = useFormik({
@@ -36,6 +68,18 @@ const Signup: NextPage = () => {
       <div className="row mt-3 h-100 justify-content-center g-sm-2">
         <div className="col d-flex flex-column min-vh-50 align-items-center justify-content-center col-sm-8 col-md-6 col-lg-5   p-2 ">
           <h4>Signup</h4>
+
+          {signupInfo.isError && (
+            <div className="alert alert-danger px-1 py-1 " role="alert">
+              {errorInfo.response.data.errors[0].message}
+            </div>
+          )}
+
+          {signupInfo.isSuccess && (
+            <div className="alert alert-success px-1 py-1 " role="alert">
+              Redirecting to the main page....
+            </div>
+          )}
 
           <div>
             <form onSubmit={formik.handleSubmit} className="d-flex flex-column">
@@ -88,7 +132,20 @@ const Signup: NextPage = () => {
                 <div className="text-danger">{formik.errors.password}</div>
               ) : null}
 
-              <button type="submit" className="btn mt-2 btn-primary">
+              <button
+                disabled={signupInfo.isLoading}
+                type="submit"
+                className="btn mt-2 btn-primary"
+              >
+                <span
+                  className={`${
+                    signupInfo.isLoading
+                      ? "spinner-border spinner-border-sm"
+                      : ""
+                  }`}
+                  role="nothing"
+                  aria-hidden="true"
+                ></span>
                 Signup
               </button>
             </form>
@@ -104,3 +161,20 @@ const Signup: NextPage = () => {
 }
 
 export default Signup
+
+
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  // console.log(req.cookies.session)
+  if (req.cookies.session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+      props: { isLogin: true },
+    }
+  }
+  return {
+    props: { isLogin: false },
+  }
+}

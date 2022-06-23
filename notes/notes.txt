@@ -33,10 +33,12 @@ Create depl & service//Done
 add to ingress// Done
 Add to skaffold//Done
 Run on pods//Done
-Work on user authenticaion.//
-try react-query//
-initialize redux-toolkit//
-check the server side rendaring if it's render everytime or not on change page or url.//
+Work on user authenticaion.//Done
+try react-query//Done
+store user data and token to redux store//Done
+initialize redux-toolkit//Done
+store all user data to redux-store//Done
+check the server side rendaring if it's render everytime or not on change page or url.// Done
 use cypress for testing//
 
 //
