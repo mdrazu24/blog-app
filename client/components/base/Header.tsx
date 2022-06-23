@@ -83,9 +83,7 @@ const Header = () => {
                     onClick={signoutHandler}
                     type="button"
                     className="btn  btn-outline-secondary"
-                  >
-                    Signout
-                  </button>
+                  >Logout</button>
                 )}
               </div>
             </>

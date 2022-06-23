@@ -88,6 +88,7 @@ const Login: NextPage = () => {
                   Email :{" "}
                 </label>
                 <input
+
                   type="email"
                   id="email"
                   className="form-control"
