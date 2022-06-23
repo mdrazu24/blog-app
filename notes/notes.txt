@@ -39,9 +39,30 @@ store user data and token to redux store//Done
 initialize redux-toolkit//Done
 store all user data to redux-store//Done
 check the server side rendaring if it's render everytime or not on change page or url.// Done
-use cypress for testing//
+use cypress for testing//Done
 
 //
+
+********************Post Servicee**********************
+create post service//
+use different database//
+create prisma model for posts//
+create CRUD operations//
+use service worker to optimize and save the blob data//
+link it with user: {fullName , userId, email, profilePic}//
+ ------ > >> >>>> work on event bus
+test it//
+
+********************* event bus *************************
+initialize kafka node//
+add in common files and publish npm//
+integrate with post and auth//
+
+******************client side of Post*******************
+create post interface//
+use service worker to optimize and save the blob data//
+integrate all post services apis//
+test it//
 
 
 ************Authentication and Authorization*********
