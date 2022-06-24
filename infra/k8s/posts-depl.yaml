@@ -1,20 +1,20 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: authentication-depl
+  name: posts-depl
 spec:
   replicas : 1
   selector:
     matchLabels:
-      app: authentication
+      app: posts
   template:
     metadata:
       labels:
-        app: authentication
+        app: posts
     spec:
       containers:
-      - image: alifhossain/authentication
-        name: authentication
+      - image: alifhossain/posts
+        name: posts
         env :
           - name: POSTGRES_USER
             valueFrom : 
@@ -29,7 +29,7 @@ spec:
           - name: DATABASE_URL
             valueFrom : 
               secretKeyRef :
-                name : auth-db3
+                name : posts-db2
                 key : DATABASE_URL
           - name: SALT
             valueFrom : 
@@ -46,12 +46,12 @@ spec:
 apiVersion : v1
 kind : Service
 metadata:
-  name : authentication-srv
+  name : posts-srv
 spec :
   selector :
-    app : authentication
+    app : posts
   ports :
-    - name: authentication
+    - name: posts
       protocol : TCP
       port : 3000
       targetPort : 3000

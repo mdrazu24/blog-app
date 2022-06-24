@@ -44,19 +44,20 @@ use cypress for testing//Done
 //
 
 ********************Post Servicee**********************
-create post service//
-use different database//
-create prisma model for posts//
+create post service//Done
+use different database//Done
+create prisma model for posts//Done
 create CRUD operations//
+link it with user: {fullName , userId, email, profilePic}// Done
+create and use Redis-depl //
 use service worker to optimize and save the blob data//
-link it with user: {fullName , userId, email, profilePic}//
  ------ > >> >>>> work on event bus
-test it//
-
 ********************* event bus *************************
 initialize kafka node//
 add in common files and publish npm//
 integrate with post and auth//
+
+<<<<<<<<<<<<<<<<<<---------------TEST ALL---------------->>>>>>>>>>>>>>
 
 ******************client side of Post*******************
 create post interface//

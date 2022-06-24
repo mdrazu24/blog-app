@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-auth-depl
+  name: postgres-depl
 spec:
   replicas: 1
   selector:
@@ -38,7 +38,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-auth-srv
+  name: postgres-srv
 spec:
   selector:
     app: postgres
