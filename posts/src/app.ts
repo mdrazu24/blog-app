@@ -7,7 +7,7 @@ import {json} from 'body-parser'
 
 // import { NotFound } from './errors/notFound'
 import { NotFound, errorHandler } from '@hrioymahmud/blogcommon'
-import { PostRouter } from './routes/auth-route'
+import { PostRouter } from './routes/posts-route'
 
 const app = express()
 export interface UserInfo {

@@ -50,7 +50,7 @@ create prisma model for posts//Done
 link it with user: {fullName , userId, email, profilePic}// Done
 create CRUD operations//
 create and use Redis-depl //
-use service worker to optimize and save the blob data//
+use service worker to optimize and save the blob data// USE BULL PACKAGE //worker_threads
  ------ > >> >>>> work on event bus
 ********************* event bus *************************
 initialize kafka node//

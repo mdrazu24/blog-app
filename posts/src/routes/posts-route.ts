@@ -1,7 +1,7 @@
 import {  Router } from "express"
 import {
   postTestRoute
-} from "../controllers/auth-controller"
+} from "../controllers/posts-controller"
 // import { authUser} from '@hrioymahmud/blogcommon'
 
 
