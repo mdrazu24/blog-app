@@ -47,8 +47,8 @@ use cypress for testing//Done
 create post service//Done
 use different database//Done
 create prisma model for posts//Done
-create CRUD operations//
 link it with user: {fullName , userId, email, profilePic}// Done
+create CRUD operations//
 create and use Redis-depl //
 use service worker to optimize and save the blob data//
  ------ > >> >>>> work on event bus
