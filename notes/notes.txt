@@ -48,9 +48,13 @@ create post service//Done
 use different database//Done
 create prisma model for posts//Done
 link it with user: {fullName , userId, email, profilePic}// Done
-create CRUD operations//
-create and use Redis-depl //
+create CRUD operations// Done
+test all //
+create bull and bull dashboard//
 use service worker to optimize and save the blob data// USE BULL PACKAGE //worker_threads
+add imagedata to check bull//
+create kafka//
+create and use Redis-depl //
  ------ > >> >>>> work on event bus
 ********************* event bus *************************
 initialize kafka node//
