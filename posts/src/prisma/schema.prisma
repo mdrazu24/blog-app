@@ -17,6 +17,7 @@ model Post {
   id        Int      @id @default(autoincrement())
   title     String   @db.VarChar(255)
   createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @updatedAt
   content   String?
   author    User     @relation(fields: [authorId], references: [userId])
   authorId  Int
