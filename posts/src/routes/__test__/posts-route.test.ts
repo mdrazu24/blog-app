@@ -1,8 +1,20 @@
-import { prismaMock } from "../../test/setup"
-import request from 'supertest'
-import {app} from "../../app"
+import { prismaMock, authPrismaMock } from "../../test/setup"
+import request from "supertest"
+import { app } from "../../app"
+import {app as autAPp} from '../../../../authentication/src/app'
+test("should return 400 statusCode", async () => {
+  const user = {
+    id: 3,
+    fullName: "Rich Khan",
+    email: "test@gmail.com",
+    password: "testpassword",
+    userId : 1
+  }
 
+  authPrismaMock.user.create.mockResolvedValue(user)
 
+  await request(autAPp).post("/api/v1/auth/create-user").send({}).expect(400)
+})
 
 test("should create new user and return a cookieSession", async () => {
   const user = {
@@ -10,54 +22,16 @@ test("should create new user and return a cookieSession", async () => {
     fullName: "Rich Khan",
     email: "test@gmail.com",
     password: "testpassword",
-    userId : 1
+    userId: 1,
   }
 
-  prismaMock.user.create.mockResolvedValue(user)
+  authPrismaMock.user.create.mockResolvedValue(user)
 
-  const userData = await request(app).post("/api/v1/auth/create-user").send(user)
-  console.log(userData.error)
-  // expect(userData.body).toEqual("Signup successful")
+  const userData = await request(autAPp).post("/api/v1/auth/create-user").send(user).expect(200)
+   
 
-  // expect(userData.headers['set-cookie']).toBeDefined()
-
+  expect(userData.headers["set-cookie"]).toBeDefined()
+  console.log(userData.headers["set-cookie"][0])
 })
-
-
-// test("login should return a 500", async () => {
-//   const user = {
-//     id: 3,
-//     fullName: "Rich Khan",
-//     email: "test@gmail.com",
-//     password: "testpassword",
-//   }
-
-// await request(app).post("/api/v1/login").send(user).expect(500)
-
-// })
-
-// test("get user list", async () => {
-//   //create user and get the cookie
-//    const user = {
-//      id: 3,
-//      fullName: "Rich Khan",
-//      email: "test@gmail.com",
-//      password: "testpassword",
-//      userId: 1,
-//    }
-
-//   prismaMock.user.create.mockResolvedValue(user)
-
-//   const userData = await request(app).post("/api/v1/create-user").send(user).expect(201)
-//   const userCookie = userData.headers["set-cookie"][0]
-
-//  await request(app)
-//    .get("/api/v1/test")
-//    .set("Cookie", userCookie)
-//    .expect(200)
-
-// })
-
-
 
 

@@ -13,12 +13,13 @@ test("should return 400 statusCode", async () => {
   prismaMock.user.create.mockResolvedValue(user)
 
   await request(app).post("/api/v1/auth/create-user").send({}).expect(400)
+
 })
 
 
 test("should create new user and return a cookieSession", async () => {
   const user = {
-    id: 3,
+    id: 1,
     fullName: "Rich Khan",
     email: "test@gmail.com",
     password: "testpassword",
@@ -26,9 +27,15 @@ test("should create new user and return a cookieSession", async () => {
 
   prismaMock.user.create.mockResolvedValue(user)
 
-  const userData = await request(app).post("/api/v1/auth/create-user").send(user).expect(201)
+  const userData = await request(app).post("/api/v1/auth/create-user").send(user).expect(200)
+  console.log(userData.error)
 
-  expect(userData.body).toEqual("Signup successful")
+  expect(userData.body).toEqual({
+    status: "Signup successful",
+    user: {
+      userData: { email: "test@gmail.com", fullName: "Rich Khan", id: 1 },
+    },
+  })
 
   expect(userData.headers['set-cookie']).toBeDefined()
 
@@ -58,7 +65,7 @@ test("get user list", async () => {
 
   prismaMock.user.create.mockResolvedValue(user)
 
-  const userData = await request(app).post("/api/v1/auth/create-user").send(user).expect(201)
+  const userData = await request(app).post("/api/v1/auth/create-user").send(user).expect(200)
   const userCookie = userData.headers["set-cookie"][0]
 
  await request(app)
