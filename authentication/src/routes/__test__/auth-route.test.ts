@@ -38,7 +38,7 @@ test("should create new user and return a cookieSession", async () => {
   })
 
   expect(userData.headers['set-cookie']).toBeDefined()
-
+  console.log(userData.headers["set-cookie"])
 })
 
 

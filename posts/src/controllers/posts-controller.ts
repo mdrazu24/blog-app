@@ -1,6 +1,7 @@
 import { BadRequest } from "@hrioymahmud/blogcommon"
 import {  Request, Response } from "express"
 import prismaClient from "../client"
+import jwt from 'jsonwebtoken';
 interface PostInterface {
   id?: number
   title: string
@@ -30,14 +31,28 @@ declare global {
 }
 
 export const postTestRoute = async (req: Request, res: Response) => {
-
+  const token = jwt.sign(
+    { id: 1, email: "test@gmail.com" },
+    process.env.JWT_SECRET!,
+    {
+      expiresIn: "24h",
+    }
+  )
+  req.session = ({ jwt: token })
   res.send("hit the endpoint.")
+}
+
+export const postTestRouteTwo = async (req: Request, res: Response) => { 
+  res.send("successfull.")
 }
 
 
 export const createPost = async (req: Request, res: Response) => {
   const { title, content, author }: PostInterface = req.body
 
+  if(!title || !content || !author) { 
+    throw new BadRequest("Invalid post data.", 500)
+  }
     const userData = req.currentUser
 
     if (parseInt(userData!.id!) != author.userId) {

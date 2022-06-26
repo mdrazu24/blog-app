@@ -37,7 +37,8 @@ app.use(cookieSession(
   {signed : false,
      secure : process.env.NODE_ENV !== 'test', maxAge : 24 * 60 * 60 * 1000 //this is one day.
     }
-  )) // to parser the cookie
+  )
+  ) // to parser the cookie
 app.use(morgan('dev')) //to log the request in the console.
 
 
