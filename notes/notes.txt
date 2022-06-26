@@ -49,11 +49,10 @@ use different database//Done
 create prisma model for posts//Done
 link it with user: {fullName , userId, email, profilePic}// Done
 create CRUD operations// Done
-test all //
-create bull and bull dashboard//
-use service worker to optimize and save the blob data// USE BULL PACKAGE //worker_threads
-add imagedata to check bull//
+test all //Done
 create kafka//
+use service worker to optimize and save the blob data//worker_threads//
+create bull and bull dashboard//Done// only use when want to create some jobs.
 create and use Redis-depl //
  ------ > >> >>>> work on event bus
 ********************* event bus *************************
@@ -84,3 +83,6 @@ connect websockets //
 
 
 //
+****************************NOTES**************************
+Use bull to process data on a diffrent thread as queue.
+Use worker_threads to process data on a diffrent thread to get back the processed data immedietly.
