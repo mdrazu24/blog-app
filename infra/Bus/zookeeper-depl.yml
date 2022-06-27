@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zk1-depl
+spec:
+  selector:
+    matchLabels:
+      app: zk-1
+  template:
+    metadata:
+      labels:
+        app: zk-1
+    spec:
+      containers:
+
+      - name: zk1
+        image: bitnami/zookeeper
+        ports:
+        - containerPort: 2181
+        env:
+        - name: ALLOW_ANONYMOUS_LOGI
+          value: 'true'
+        - name : ZOO_ENABLE_AUTH
+          value : 'true'
+        - name: ZOOKEEPER_ID
+          value: "1"
+        - name: ZOOKEEPER_SERVER_1
+          value: zk1
+        - name: ZOO_CLIENT_USER
+          value: "root"
+        - name: ZOO_CLIENT_PASSWORD
+          value: "root"
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zk1-srv
+  labels:
+    app: zk-1
+spec:
+  ports:
+  - name: client
+    port: 2181
+    protocol: TCP
+  - name: follower
+    port: 2888
+    protocol: TCP
+  - name: leader
+    port: 3888
+    protocol: TCP
+  selector:
+    app: zk-1
