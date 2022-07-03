@@ -23,6 +23,7 @@ spec:
                 name: posts-srv
                 port : 
                   number: 3000
+         
           - path: /
             pathType: Prefix
             backend:

@@ -1,6 +1,26 @@
 
 import prisma  from "./client"
 import {app} from './app'
+import {Kafka} from 'kafkajs'
+
+const kafka = new Kafka({
+  clientId: "blogapp",
+  brokers: ["192.168.1.240:9092"],
+})
+
+
+
+const producer = kafka.producer()
+
+const sendMessage = async () => {
+await producer.connect()
+await producer.send({
+  topic: "testing",
+  messages: [{ value: "Hello from the post service!" }],
+})
+ }
+
+sendMessage()
 
 async function startDb() {
   await prisma
