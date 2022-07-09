@@ -13,7 +13,7 @@ spec:
         app: authentication
     spec:
       containers:
-      - image: alifhossain/authentication
+      - image: alifhossain/authentication:latest
         name: authentication
         env :
           - name: POSTGRES_USER

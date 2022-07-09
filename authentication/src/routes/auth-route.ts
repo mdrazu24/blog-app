@@ -11,7 +11,7 @@ import { CREATE_ACCOUNT, LOGIN } from "../validation/auth-validation"
 import {validateRequest, authUser} from '@hrioymahmud/blogcommon'
 // import { authUser } from '../middlewares/auth-user';
 
-
+//
 
 const router = Router()
 router.get("/test", authUser, userTestRoute)

@@ -14,7 +14,6 @@ check if the skaffold is working //Done
 Connect azure postgress// Done
 Write prisma model for users// Done
 check auth-route by malfunctioning the cookie //Done
-Add redis to the auth service//
 *******MOVE TO THE ENDPOINT******
 
 ----endpoints----
@@ -50,15 +49,15 @@ create prisma model for posts//Done
 link it with user: {fullName , userId, email, profilePic}// Done
 create CRUD operations// Done
 test all //Done
-create kafka//
-use service worker to optimize and save the blob data//worker_threads//
+create kafka//Done
+use service worker to optimize and save the blob data//worker_threads//No need for now
 create bull and bull dashboard//Done// only use when want to create some jobs.
 create and use Redis-depl //
  ------ > >> >>>> work on event bus
 ********************* event bus *************************
-initialize kafka node//
-add in common files and publish npm//
-integrate with post and auth//
+initialize kafka node//Done
+add in common files and publish npm//Done
+integrate with post and auth//Done
 
 <<<<<<<<<<<<<<<<<<---------------TEST ALL---------------->>>>>>>>>>>>>>
 

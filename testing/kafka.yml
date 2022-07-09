@@ -45,10 +45,10 @@ spec:
         - name: KAFKA_INTER_BROKER_LISTENER_NAME
           value: INTERNAL
           
-        # - name: KAFKA_ADVERTISED_HOST_NAME
-        #   value: 192.168.1.240
-        # - name: KAFKA_ADVERTISED_PORT
-        #   value: "9092"
+        - name: KAFKA_ADVERTISED_HOST_NAME
+          value: 192.168.1.240
+        - name: KAFKA_ADVERTISED_PORT
+          value: "9092"
         image: wurstmeister/kafka
         imagePullPolicy: IfNotPresent
         name: kafka-broker

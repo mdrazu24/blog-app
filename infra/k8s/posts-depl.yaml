@@ -13,7 +13,7 @@ spec:
         app: posts
     spec:
       containers:
-      - image: alifhossain/posts
+      - image: alifhossain/posts:latest
         name: posts
         env :
           - name: POSTGRES_USER

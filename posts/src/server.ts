@@ -2,7 +2,7 @@
 import prisma  from "./client"
 import {app} from './app'
 import {Kafka} from 'kafkajs'
-
+// import {EventProducer} from '../../library/kafka/KafkaEvent'
 const kafka = new Kafka({
   clientId: "blogapp",
   brokers: ["192.168.1.240:9092"],
@@ -16,11 +16,12 @@ const sendMessage = async () => {
 await producer.connect()
 await producer.send({
   topic: "testing",
-  messages: [{ value: "Hello from the post service!" }],
+  messages: [{ value: "Hello from the Kafka class!" }],
 })
  }
 
 sendMessage()
+//
 
 async function startDb() {
   await prisma
