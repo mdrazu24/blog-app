@@ -17,7 +17,7 @@ async function startDb() {
 const server = app.listen(3000, () => {
   console.log("listenign on port 3000")
 }) // creating a server and storing it's value in a variable.
-
+//
 startDb()
 
 // this is to make sure the server does not go down before completing the pending request when there is an error.

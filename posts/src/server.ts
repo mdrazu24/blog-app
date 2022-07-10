@@ -1,27 +1,30 @@
 
 import prisma  from "./client"
 import {app} from './app'
-import {Kafka} from 'kafkajs'
-// import {EventProducer} from '../../library/kafka/KafkaEvent'
-const kafka = new Kafka({
-  clientId: "blogapp",
-  brokers: ["192.168.1.240:9092"],
-})
+
+import {KafkaBus, KafkaEventType} from '@hrioymahmud/blogcommon'
 
 
+KafkaBus.send(
+    KafkaEventType.POST_CREATED
+,
+  {
+    type: KafkaEventType.POST_CREATED,
+    data: { id: "1", title: "title", content: "content", authorId: 1 },
+  }
+)
 
-const producer = kafka.producer()
+KafkaBus.recieve(KafkaEventType.POST_CREATED).then(consumer => {
+  consumer.run({
+    eachMessage: async ({ topic, message }) => {
+     const val = message.value
+     console.log(topic)
+      console.log(val && val.toString())
+    }
+  })
+}
+)
 
-const sendMessage = async () => {
-await producer.connect()
-await producer.send({
-  topic: "testing",
-  messages: [{ value: "Hello from the Kafka class!" }],
-})
- }
-
-sendMessage()
-//
 
 async function startDb() {
   await prisma
