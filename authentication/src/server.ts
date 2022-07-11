@@ -1,6 +1,37 @@
 
 import prisma  from "./client"
 import {app} from './app'
+import {KafkaEventType} from '@hrioymahmud/blogcommon'
+import {Kafka} from 'kafkajs'
+
+const kafka = new Kafka({
+  clientId: "blog-app",
+  brokers: ["192.168.1.240:9092"],
+})
+
+const consumer = kafka.consumer({ groupId: "blog-app" })
+
+async function consumerConnect (){  
+  await consumer.connect().then(() => console.log("consumer connected.") )
+  
+  await consumer.subscribe({
+    topics: [KafkaEventType.POST_CREATED, KafkaEventType.POST_DELETED, KafkaEventType.POST_UPDATED],
+    fromBeginning: true,
+  })
+
+  await consumer.run({
+    eachMessage: async ({ topic, message }) => {
+      console.log(topic)
+      console.log({
+        value: message.value!.toString(),
+      })
+    },
+  })
+
+
+} 
+
+consumerConnect()
 
 async function startDb() {
   await prisma
@@ -13,6 +44,9 @@ async function startDb() {
     })
 
 }
+
+
+
 
 const server = app.listen(3000, () => {
   console.log("listenign on port 3000")

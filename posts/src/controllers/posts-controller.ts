@@ -1,7 +1,9 @@
-import { BadRequest } from "@hrioymahmud/blogcommon"
+import { BadRequest, KafkaEventType } from "@hrioymahmud/blogcommon"
 import {  Request, Response } from "express"
 import prismaClient from "../client"
 import jwt from 'jsonwebtoken';
+import { producer } from "../server";
+
 interface PostInterface {
   id?: number
   title: string
@@ -15,6 +17,7 @@ interface PostInterface {
   }
 
 }
+
 
 export interface UserInfo {
   fullName?: string
@@ -94,6 +97,11 @@ export const createPost = async (req: Request, res: Response) => {
     }
   })
 
+  await producer.send({
+    topic: KafkaEventType.POST_CREATED,
+    messages: [{ value: JSON.stringify(newPost) }],
+  })
+
   
   // send the post back to the client
 
@@ -153,6 +161,13 @@ export const updatePost = async (req: Request, res: Response) => {
      })
    }
 
+   await producer.send({
+     topic: KafkaEventType.POST_UPDATED,
+     messages: [{ value: JSON.stringify(post) }],
+   })
+
+
+
   //send the post back to the client
   res.status(200).json({ status: "success", post: post })
 }
@@ -173,9 +188,20 @@ export const deletePost = async (req: Request, res: Response) => {
 
   //delete the post
 
-  await prismaClient.post.delete({where : {
-    id : postId
-  }})
+ const post = await prismaClient.post.delete({
+   where: {
+     id: postId,
+   },
+     include: {
+       author: true,
+   },
+ })
+
+   await producer.send({
+     topic: KafkaEventType.POST_DELETED,
+     messages: [{ value: JSON.stringify(post) }],
+   })
+
 
 
   //send operation status to the client
