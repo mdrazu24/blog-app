@@ -57,8 +57,10 @@ export const createPost = async (req: Request, res: Response) => {
     throw new BadRequest("Invalid post data.", 500)
   }
     const userData = req.currentUser
+    console.log(userData)
+    console.log(author)
 
-    if (parseInt(userData!.id!) != author.userId) {
+    if (parseInt(userData!.id!) != author.id) {
       throw new BadRequest("You are not authorized to create this post.")
     }
 
@@ -170,6 +172,32 @@ export const updatePost = async (req: Request, res: Response) => {
 
   //send the post back to the client
   res.status(200).json({ status: "success", post: post })
+}
+
+export const getAllPost = async (req: Request, res: Response) => { 
+  const posts = await prismaClient.post.findMany({
+    include : {
+      author : true
+    }
+  })
+  res.status(200).json({ status: "success", postCount: posts.length, posts })
+}
+
+export const getSinglePost = async (req: Request, res: Response) => { 
+  const postId = parseInt(req.params.id)
+  const post = await prismaClient.post.findFirst({
+    where: { id: postId },
+    include : {
+      author : true
+    }
+  })
+
+  if (!post) { 
+    throw new BadRequest("No such post found with the given ID.")
+  }
+
+
+  res.status(200).json({ status: "success", post })
 }
 
 export const deletePost = async (req: Request, res: Response) => {

@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit"
-import React, {  useEffect } from "react"
+import React from "react"
 import { Provider } from "react-redux"
-import userSlice, { login } from "./userSlice"
+import postSlice from "./postSlice"
+import userSlice from "./userSlice"
 // ...
 
 export const store = configureStore({
   reducer: {
     users: userSlice,
+    posts : postSlice
   },
 })
 
@@ -16,20 +18,6 @@ export const store = configureStore({
 
 const StoreProvider = (props: any) => {
 
-
-  // useEffect(() => {
-  //   const userData = localStorage.getItem("user")
-
-  //   if (userData) {
-  //     const user = JSON.parse(userData) as {
-  //       id: number
-  //       fullName: string
-  //       email: string
-  //     }
-  //     store.dispatch(login({ user: user }))
-  //   }
-
-  // }, [])
 
   return <Provider store={store}>{props.children}</Provider>
 }

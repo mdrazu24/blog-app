@@ -5,12 +5,14 @@ import axios from 'axios'
 import {logout, login, changeState} from '../../store/userSlice'
 import {useAppDispatch, useAppSelector} from '../../store/hooks'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
 
 const Header = () => {
   const dispatch = useAppDispatch()
   const isLogin = useAppSelector(state => state.users.isLogin)
   const [isLoading, setIsLoading] = useState(true)
   const notify = () => toast.success('Logout successfull.')
+  const router = useRouter()
 
   const userSignout = async () => {
      await axios.get("/api/v1/auth/logout")
@@ -18,6 +20,7 @@ const Header = () => {
     localStorage.removeItem('user')
     dispatch(changeState({isLogin: false}))
     notify()
+    router.push('/login')
   }
 
   useEffect(() => {
@@ -78,11 +81,19 @@ const Header = () => {
                     </Link>
                   </>
                 ) : (
-                  <button
-                    onClick={signoutHandler}
-                    type="button"
-                    className="btn  btn-outline-secondary"
-                  >Logout</button>
+                  <>
+                    <button onClick={() => router.push('/add-post')} type="button" className="btn  btn-outline-primary">
+                      Add Post
+                    </button>
+                    <button
+                      onClick={signoutHandler}
+                      type="button"
+                      className="btn  bt
+                    n-outline-secondary"
+                    >
+                      Logout
+                    </button>
+                  </>
                 )}
               </div>
             </>
