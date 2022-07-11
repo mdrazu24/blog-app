@@ -10,9 +10,9 @@ import { authUser} from '@hrioymahmud/blogcommon'
 
 
 
-const router = Router()
+const router : Router = Router()
 router.get("/test", postTestRoute)
-router.get("/test2", postTestRouteTwo)
+router.get("/test2", authUser, postTestRouteTwo)
 router.post("/create", authUser, createPost)
 router.post("/update/:id", authUser, updatePost)
 router.delete("/delete/:id", authUser, deletePost)

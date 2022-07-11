@@ -17,19 +17,19 @@ export const store = configureStore({
 const StoreProvider = (props: any) => {
 
 
-  useEffect(() => {
-    const userData = localStorage.getItem("user")
+  // useEffect(() => {
+  //   const userData = localStorage.getItem("user")
 
-    if (userData) {
-      const user = JSON.parse(userData) as {
-        id: number
-        fullName: string
-        email: string
-      }
-      store.dispatch(login({ user: user }))
-    }
+  //   if (userData) {
+  //     const user = JSON.parse(userData) as {
+  //       id: number
+  //       fullName: string
+  //       email: string
+  //     }
+  //     store.dispatch(login({ user: user }))
+  //   }
 
-  }, [])
+  // }, [])
 
   return <Provider store={store}>{props.children}</Provider>
 }

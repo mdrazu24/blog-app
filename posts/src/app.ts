@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express"
+import express, { Request, Response, Express } from "express"
 import morgan from "morgan"
 import cookieSession from "cookie-session"
 require("express-async-errors")
@@ -11,7 +11,7 @@ import { json } from "body-parser"
 import { NotFound, errorHandler, authUser } from "@hrioymahmud/blogcommon"
 import { PostRouter } from "./routes/posts-route"
 // import { Queue, Worker } from "bullmq"
-const app = express()
+const app: Express = express()
 export interface UserInfo {
   fullName?: string
   email: string
@@ -43,7 +43,7 @@ app.use(json())
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== "test",
+    // secure: process.env.NODE_ENV !== "test",
     maxAge: 24 * 60 * 60 * 1000, //this is one day.
   })
 ) // to parser the cookie

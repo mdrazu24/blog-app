@@ -21,7 +21,7 @@
     "@bull-board/api": "^4.0.0",
     "@bull-board/express": "^4.0.0",
     "@hrioymahmud/blogappcommon": "^1.0.1",
-    "@hrioymahmud/blogcommon": "^1.0.9",
+    "@hrioymahmud/blogcommon": "^1.0.21",
     "@prisma/client": "^3.15.2",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.13",

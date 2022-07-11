@@ -171,10 +171,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       redirect: {
         destination: "/",
       },
-      props: { isLogin: true },
+      props: {  },
     }
   }
   return {
-    props: { isLogin: false },
+    props: {  },
   }
 }

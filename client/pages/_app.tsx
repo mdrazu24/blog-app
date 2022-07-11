@@ -28,9 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   })
 
 
-    useEffect(() => {
-      store.dispatch(changeState({ isLogin: pageProps.isLogin }))
-    }, [pageProps.isLogin])
+    // useEffect(() => {
+    //   store.dispatch(changeState({ isLogin: pageProps.isLogin }))
+    // }, [pageProps.isLogin])
 
   Router.events.on("routeChangeStart", progress.start)
   Router.events.on("routeChangeComplete", progress.finish)

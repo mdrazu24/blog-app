@@ -13,12 +13,11 @@ const Header = () => {
   const notify = () => toast.success('Logout successfull.')
 
   const userSignout = async () => {
-    const { data } = await axios.get("/api/v1/auth/logout")
+     await axios.get("/api/v1/auth/logout")
     dispatch(logout())
+    localStorage.removeItem('user')
     dispatch(changeState({isLogin: false}))
     notify()
-    localStorage.removeItem('user')
-    return data
   }
 
   useEffect(() => {

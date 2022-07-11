@@ -35,7 +35,8 @@ app.set('trust proxy', true)
 app.use(json())
 app.use(cookieSession(
   {signed : false,
-     secure : process.env.NODE_ENV !== 'test', maxAge : 24 * 60 * 60 * 1000 //this is one day.
+    //  secure : process.env.NODE_ENV !== 'test', 
+    maxAge : 24 * 60 * 60 * 1000 //this is one day.
     }
   )
   ) // to parser the cookie

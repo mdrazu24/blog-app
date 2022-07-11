@@ -14,7 +14,6 @@ const Home: NextPage = (props) => {
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  // console.log(req.cookies.session)
   if (req.cookies.session) {
     return {
       props: { isLogin: true },

@@ -15,7 +15,7 @@ import {validateRequest, authUser} from '@hrioymahmud/blogcommon'
 
 const router = Router()
 router.get("/test", authUser, userTestRoute)
-router.get("/logout", authUser, userLogout)
+router.get("/logout", userLogout)
 router.post("/create-user", CREATE_ACCOUNT, validateRequest, createAccount)
 router.post("/login", LOGIN, validateRequest, login)
 router.patch("/update/:id", authUser,  updateBasicInfo)
