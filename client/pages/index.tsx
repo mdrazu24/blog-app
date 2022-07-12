@@ -53,7 +53,7 @@ const Home = (props : PropsType) => {
   }
 
   return (
-    <div className="d-flex p-4  mt-4 gap-4" >
+    <div className="d-flex p-4  mt-4 gap-4">
       {posts.length != 0 &&
         posts.map((post) => {
           return (
@@ -68,14 +68,15 @@ const Home = (props : PropsType) => {
               <p>{post.author.fullName}</p>
 
               <button
-                onClick={(e) => {e.stopPropagation; deleteHandler(post.id)}}
+                onClick={(e) => {
+                  e.stopPropagation
+                  deleteHandler(post.id)
+                }}
                 className="btn btn-danger"
               >
                 <span
                   className={`${
-                    isLoading
-                      ? "spinner-border spinner-border-sm"
-                      : ""
+                    isLoading ? "spinner-border spinner-border-sm" : ""
                   }`}
                   role="nothing"
                   aria-hidden="true"
@@ -85,6 +86,8 @@ const Home = (props : PropsType) => {
             </div>
           )
         })}
+
+      {posts.length == 0 && <div className=' text-center fs-4 ' >No posts</div>}
     </div>
   )
 }
