@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: postgres-depl
 spec:
+  serviceName: postgres-depl
   replicas: 1
   selector:
     matchLabels:
@@ -12,6 +13,10 @@ spec:
       labels:
         app: postgres  
     spec:
+      volumes:
+      - name: postgres-pv-volume
+        persistentVolumeClaim:
+          claimName: postgres-pv-volume
       containers:
       - name: postgres
         image: postgres:14.3-alpine
@@ -29,10 +34,8 @@ spec:
                 name : postgres
                 key : POSTGRES_PASSWORD
         volumeMounts:
-        - name: postgres-database-storage
-          mountPath: /var/lib/pgsql/data
-      volumes:
-      - name: postgres-database-storage
+        - name: postgres-pv-volume
+          mountPath: /var/lib/postgresql/data
 
 ---
 apiVersion: v1

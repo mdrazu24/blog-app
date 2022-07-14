@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-cluster-conf
+data:
+  redis.conf: |
+    cluster-enabled yes
+    cluster-require-full-coverage no
+    cluster-node-timeout 15000
+    cluster-migration-barrier 1
+    
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+spec:
+  serviceName: redis
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis  
+    spec:
+      containers:
+      - name: redis
+        image: bitnami/redis
+        command:
+          - redis-server
+          - "/redis-master/redis.conf"
+
+        ports:
+          - containerPort: 6379
+        env :
+          - name: MASTER
+            value: "true"
+    
+          - name: REDIS_PASSWORD
+            value : "2543"
+          - name : REDIS_MASTER_PASSWORD
+            value : "2543"
+          - name: REDIS_MASTER_NAME
+            value : "root"
+        volumeMounts:
+        - mountPath: /bitnami/redis/data
+          name: data
+        - mountPath: /redis-master
+          name: config
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: redis-data
+      - name: config
+        configMap:
+          name: redis-cluster-conf
+      
+              
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-srv
+spec:
+  selector:
+    app: redis
+  ports:
+  - protocol: TCP
+    port: 6379
+  
+
