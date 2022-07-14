@@ -26,6 +26,7 @@ spec:
         - env:
             - name: REDIS_PASSWORD
               value: "2543"
+           
             
             - name: REDIS_DISABLE_COMMANDS
               value: FLUSHDB,FLUSHALL

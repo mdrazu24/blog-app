@@ -2,7 +2,7 @@ import { BadRequest, KafkaEventType } from "@hrioymahmud/blogcommon"
 import {  Request, Response } from "express"
 import prismaClient from "../client"
 import jwt from 'jsonwebtoken';
-import { producer } from "../server";
+import { producer, redisClient } from "../server";
 
 interface PostInterface {
   id?: number
@@ -99,6 +99,11 @@ export const createPost = async (req: Request, res: Response) => {
     }
   })
 
+  await redisClient.zAdd("posts", [{
+    score: newPost.id,
+    value: JSON.stringify(newPost),
+  }])
+
   await producer.send({
     topic: KafkaEventType.POST_CREATED,
     messages: [{ value: JSON.stringify(newPost) }],
@@ -168,6 +173,12 @@ export const updatePost = async (req: Request, res: Response) => {
      messages: [{ value: JSON.stringify(post) }],
    })
 
+   await redisClient.zAdd("posts", [
+     {
+       score: post.id,
+       value: JSON.stringify(post),
+     },
+   ])
 
 
   //send the post back to the client
@@ -175,12 +186,32 @@ export const updatePost = async (req: Request, res: Response) => {
 }
 
 export const getAllPost = async (req: Request, res: Response) => { 
-  const posts = await prismaClient.post.findMany({
-    include : {
-      author : true
-    }
+  const allPost = await redisClient.zRange("posts", 0, -1).catch((err) => {
+    console.log(err)
   })
-  res.status(200).json({ status: "success", postCount: posts.length, posts })
+
+  if (allPost) {
+    const allDataParsed = allPost.map((data) => {
+      return JSON.parse(data)
+    })
+
+    res
+      .status(200)
+      .json({
+        status: "success",
+        postCount: allDataParsed.length,
+        posts: allDataParsed,
+      })
+  }else {
+    const posts = await prismaClient.post.findMany({
+      include: {
+        author: true,
+      },
+    })
+
+    res.status(200).json({ status: "success", postCount: posts.length, posts })
+  }
+  
 }
 
 export const getSinglePost = async (req: Request, res: Response) => { 
@@ -195,6 +226,7 @@ export const getSinglePost = async (req: Request, res: Response) => {
   if (!post) { 
     throw new BadRequest("No such post found with the given ID.")
   }
+
 
 
   res.status(200).json({ status: "success", post })

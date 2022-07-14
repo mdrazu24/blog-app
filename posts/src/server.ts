@@ -2,7 +2,7 @@
 import prisma  from "./client"
 import {app} from './app'
 import {Kafka} from 'kafkajs'
-
+import { createClient } from "redis"
 // import {KafkaBus, KafkaEventType} from '@hrioymahmud/blogcommon'
 
 const kafka = new Kafka({
@@ -36,6 +36,42 @@ connectProducer()
 //   })
 // }
 // )
+export const redisClient = createClient({
+  url: "redis://default:2543@redis:6379",
+})
+
+const connectRedis = async () => { 
+  
+  redisClient.on("error", (err) => {
+    console.log("Error " + err)
+  }
+  )
+  redisClient.on("ready", () => {
+    console.log("Redis is ready")
+  }
+  )
+
+  await redisClient.connect()
+  // const numAdded = await redis.zAdd("vehicles", [
+  //   {
+  //     score: 10,
+  //     value: "helicopter",
+  //   },
+  //   {
+  //     score: 12,
+  //     value: "plane",
+  //   },
+  // ])
+  // console.log(`Added ${numAdded} items.`)
+
+  // for await (const { score, value } of redis.zScanIterator("vehicles")) {
+  //   console.log(`${value} -> ${score}`)
+  // }
+
+
+}
+
+connectRedis()
 
 
 async function startDb() {
