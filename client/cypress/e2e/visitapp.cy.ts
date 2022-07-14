@@ -1,3 +1,4 @@
+
 describe("Navigation", () => {
   it("Visit app and login", () => {
     cy.visit("https://okay.blogs.com")
@@ -14,4 +15,5 @@ describe("Navigation", () => {
   })
 })
 
+export {}
 

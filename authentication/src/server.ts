@@ -6,9 +6,10 @@ import {Kafka} from 'kafkajs'
 
 const kafka = new Kafka({
   clientId: "blog-app",
+  // brokers: ["20.24.116.199:9092"],
   brokers: ["192.168.1.240:9092"],
 })
-
+// 192.168.1.240
 const consumer = kafka.consumer({ groupId: "blog-app" })
 
 async function consumerConnect (){  

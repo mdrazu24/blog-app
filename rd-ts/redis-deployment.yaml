@@ -26,10 +26,12 @@ spec:
         - env:
             - name: REDIS_PASSWORD
               value: "2543"
-           
-            
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
             - name: REDIS_DISABLE_COMMANDS
               value: FLUSHDB,FLUSHALL
+            - name: REDIS_AOF_ENABLED
+              value: "no"
           image: docker.io/bitnami/redis:7.0
           name: redis
           ports:

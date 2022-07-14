@@ -9,13 +9,13 @@ import {
   QueryClient,
   QueryClientProvider
 } from "react-query"
- import { ReactQueryDevtools } from "react-query/devtools"
+//  import { ReactQueryDevtools } from "react-query/devtools"
   import 'react-toastify/dist/ReactToastify.css';
 
 import StoreProvide from '../store/index'
-import { useEffect } from "react"
-import {changeState} from '../store/userSlice'
-import { store } from "../store/index"
+// import { useEffect } from "react"
+// import {changeState} from '../store/userSlice'
+// import { store } from "../store/index"
   import { ToastContainer } from 'react-toastify';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Header />
         <Component {...pageProps} />
         <ToastContainer position="bottom-right" hideProgressBar={true} />
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </StoreProvide>
   )

@@ -216,20 +216,33 @@ export const getAllPost = async (req: Request, res: Response) => {
 
 export const getSinglePost = async (req: Request, res: Response) => { 
   const postId = parseInt(req.params.id)
-  const post = await prismaClient.post.findFirst({
-    where: { id: postId },
-    include : {
-      author : true
-    }
-  })
 
-  if (!post) { 
-    throw new BadRequest("No such post found with the given ID.")
+  //get single post from redis
+  const postFromRedis = await redisClient.zRangeByScore("posts", postId, postId).catch((err) => {
+    console.log(err)
+  }
+  )
+
+  if (postFromRedis) { 
+    const post = JSON.parse(postFromRedis[0])
+    res.status(200).json({ status: "success", post })
+  }else {
+      const post = await prismaClient.post.findFirst({
+        where: { id: postId },
+        include: {
+          author: true,
+        },
+      })
+
+      if (!post) {
+        throw new BadRequest("No such post found with the given ID.")
+      }
+
+      //get a single post from redis
+
+      res.status(200).json({ status: "success", post })
   }
 
-
-
-  res.status(200).json({ status: "success", post })
 }
 
 export const deletePost = async (req: Request, res: Response) => {
@@ -262,6 +275,8 @@ export const deletePost = async (req: Request, res: Response) => {
      messages: [{ value: JSON.stringify(post) }],
    })
 
+   //delete the post from redis
+    await redisClient.zRemRangeByScore("posts", postId, postId)
 
 
   //send operation status to the client
