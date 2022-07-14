@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "blogapp-ac9a"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "blogapp-ac9a"
+  template:
+    metadata:
+      labels:
+        app: "blogapp-ac9a"
+    spec:
+      containers:
+        - name: "blogapp-ac9a"
+          image: "blogapps.azurecr.io/blogapp"
+          ports:
+          - containerPort: 3000
