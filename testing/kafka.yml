@@ -39,7 +39,7 @@ spec:
         - name: KAFKA_LISTENERS
           value: INTERNAL://0.0.0.0:9093,EXTERNAL://0.0.0.0:9092
         - name: KAFKA_ADVERTISED_LISTENERS
-          value: INTERNAL://localhost:9093,EXTERNAL://20.24.116.199:9092 
+          value: INTERNAL://localhost:9093,EXTERNAL://20.239.14.146:9092 
           #192.168.1.240
         - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
           value: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
