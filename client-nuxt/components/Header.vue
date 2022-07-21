@@ -2,7 +2,7 @@
   <div class="navbar  border">
     <div class="flex-1">
       <nuxt-link to="/">
-        <a class="btn btn-ghost normal-case text-xl">Micro-Blog</a>
+        <a class="normal-case font-bold  text-xl">Micro-BLOG</a>
       </nuxt-link>
     </div>
     <div class="flex-none">

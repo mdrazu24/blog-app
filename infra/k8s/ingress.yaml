@@ -2,11 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-blog
-
 spec:
   ingressClassName: nginx
   rules:
-    - host: okay.blogs.com
+    - host: blogs.com
       http:
         paths:
           - path: /api/v1/auth
@@ -23,7 +22,13 @@ spec:
                 name: posts-srv
                 port : 
                   number: 3000
-         
+          - path: /app
+            pathType: Prefix
+            backend:
+              service:
+                name: client-nuxt-srv
+                port:
+                  number: 3000
           - path: /
             pathType: Prefix
             backend:
@@ -31,4 +36,7 @@ spec:
                 name: client-srv
                 port:
                   number: 3000
+       
+         
+          
       

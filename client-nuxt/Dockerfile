@@ -3,5 +3,7 @@ WORKDIR /app
 COPY package.json .
 RUN npm install --only=prod
 COPY . .
-# CMD ["npm", "run", "prod"]
+
+ENV HOST 0.0.0.0
+ENV NUXT_PORT=3000
 CMD ["npm", "run", "dev"]

@@ -1,0 +1,32 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: client-nuxt-depl
+spec:
+  replicas : 1
+  selector:
+    matchLabels:
+      app: client-nuxt
+  template:
+    metadata:
+      labels:
+        app: client-nuxt
+    spec:
+      containers:
+      - image: alifhossain/client-nuxt
+        name: client-nuxt
+        
+        
+---
+apiVersion : v1
+kind : Service
+metadata:
+  name : client-nuxt-srv
+spec :
+  selector :
+    app : client-nuxt
+  ports :
+    - name: client-nuxt
+      protocol : TCP
+      port : 3000
+      targetPort : 3000
