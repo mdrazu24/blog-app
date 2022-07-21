@@ -1,15 +1,10 @@
 <template>
-  <Tutorial />
+  <h1>Post will show up here</h1>
 </template>
 
 <script lang="ts">
-
 export default {
   name: 'IndexPage',
-  data() {
-    return {
-      message: "Hello Vue!"
-    }
-  },
+
 }
 </script>

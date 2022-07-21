@@ -7,8 +7,8 @@ import { createClient } from "redis"
 
 const kafka = new Kafka({
   clientId: "blog-app",
-  brokers: ["20.239.14.146:9092"],
-  // brokers: ["20.24.116.199:9092"]
+  // brokers: ["20.239.14.146:9092"],
+  brokers: ["192.168.1.240:9092"],
 })
 // 192.168.1.240
 export const producer = kafka.producer()
