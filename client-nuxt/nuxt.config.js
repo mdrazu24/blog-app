@@ -1,6 +1,6 @@
 export default {
   router: {
-    base: '/app/'
+    base: '/app/',
   },
 
   loading: {
@@ -43,6 +43,7 @@ export default {
     '@nuxt/typescript-build',
     '@nuxt/postcss8',
     '@braid/vue-formulate/nuxt',
+
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -53,11 +54,9 @@ export default {
   ],
 
   toast: {
-      position: 'top-center',
-      duration: 3000,
-
+    position: 'top-center',
+    duration: 3000,
   },
-
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

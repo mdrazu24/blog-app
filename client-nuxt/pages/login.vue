@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { store } from '../../client/store/index';
 <template>
   <div class="flex items-center content-center justify-center w-full">
 
@@ -59,7 +60,7 @@ export default {
         // console.log(data)
         this.$toast.success('Redirecting...');
         this.isLoading = false
-        // this.$router.redirect('/')
+        this.$router.push('/')
       } catch (err) {
         console.log(err)
         const errors = err.response.data.errors

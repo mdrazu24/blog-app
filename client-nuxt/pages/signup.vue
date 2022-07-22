@@ -54,6 +54,7 @@ export default {
     }
   },
 
+
   methods: {
     signupHandler() {
       console.log(this.form.fullName,this.form.email, this.form.password)
