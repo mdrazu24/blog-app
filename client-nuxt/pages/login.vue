@@ -19,6 +19,7 @@ import { store } from '../../client/store/index';
     <FormulateInput
       name="password"
       label="Password"
+      type="password"
       placeholder="Put your password"
       validation="required|min:6"
     />
@@ -39,9 +40,10 @@ import { store } from '../../client/store/index';
 </template>
 
 <script>
+
 export default {
   name: 'LoginPage',
-
+  middleware : "notauth",
   data() {
     return {
       form: {
@@ -52,13 +54,15 @@ export default {
     }
   },
 
+
+
   methods: {
     async loginHandler() {
       try {
         this.isLoading = true
         const { data } = await this.$axios.post('/api/v1/auth/login', this.form)
         // console.log(data)
-        this.$toast.success('Redirecting...');
+        this.$store.commit('setUser', data.user)
         this.isLoading = false
         this.$router.push('/')
       } catch (err) {

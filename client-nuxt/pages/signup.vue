@@ -1,63 +1,69 @@
 <template>
   <div class="flex items-center content-center justify-center w-full">
-
-  <FormulateForm
-    name="signup"
-    @submit="signupHandler"
-    v-model="form"
-    class="signup-form"
-  >
-    <h2 class="form-title">Signup</h2>
-     <FormulateInput
-      name="fullName"
-      label="Full Name"
-      validation="required|min:6"
-    />
-    <FormulateInput
-      name="email"
-      label="Email"
-      validation="required|email"
-    />
-    <FormulateInput
-      name="password"
-      label="Password"
-      validation="required|min:6"
-    />
-    <FormulateErrors />
+    <FormulateForm
+      name="signup"
+      @submit="signupHandler"
+      v-model="form"
+      class="signup-form"
+    >
+      <h2 class="form-title">Signup</h2>
+      <FormulateInput
+        name="fullName"
+        label="Full Name"
+        placeholder="Put your full name."
+        validation="required|min:6"
+      />
+      <FormulateInput name="email" type="email" placeholder="Put your email."  label="Email" validation="required|email" />
+      <FormulateInput
+        name="password"
+        label="Password"
+        type="password"
+        placeholder="Put your password."
+        validation="required|min:6"
+      />
+      <FormulateErrors />
 
       <div class="flex flex-col d-flex mt-4">
-          <button :disabled="!form.email || !form.password || !form.fullName" type="submit" class="btn btn-secondary">
-            Login
-          </button>
+        <button
+          :disabled="!form.email || !form.password || !form.fullName"
+          type="submit"
+          class="btn btn-secondary"
+        >
+          Login
+        </button>
+      </div>
 
-        </div>
-
-        <div class="mt-4">
-          <nuxt-link class="text-primary" to="/login">Already have an account?</nuxt-link>
-        </div>
-  </FormulateForm>
-
+      <div class="mt-4">
+        <nuxt-link class="text-primary" to="/login"
+          >Already have an account?</nuxt-link
+        >
+      </div>
+    </FormulateForm>
   </div>
 </template>
 
 <script>
 export default {
- name: 'SignupPage',
+  name: 'SignupPage',
+  middleware: 'notauth',
 
   data() {
     return {
       form: {
-        fullName : "",
+        fullName: '',
         email: '',
         password: '',
       },
     }
   },
-
+  // mounted() {
+  //   const user = this.$store.getters['getUser']
+  //   console.log(user)
+  // },
 
   methods: {
     signupHandler() {
-      console.log(this.form.fullName,this.form.email, this.form.password)
+      console.log(this.form.fullName, this.form.email, this.form.password)
     },
   },
 }
@@ -78,26 +84,24 @@ export default {
   margin-top: 20px;
   padding: 2em;
   border: 1px solid #a8a8a8;
-  border-radius: .5em;
+  border-radius: 0.5em;
   max-width: 500px;
   box-sizing: border-box;
-    outline: none !important;
-
+  outline: none !important;
 }
 
 .formulate-input-element {
   border: 1px solid #a8a8a8;
-  border-radius: .5em;
-  padding: .5em;
+  border-radius: 0.5em;
+  padding: 0.5em;
 }
 
 .formulate-input-element input {
   outline: none;
-
 }
- .formulate-input-error {
+.formulate-input-error {
   color: red;
- }
+}
 
 .form-title {
   margin-bottom: 20px;

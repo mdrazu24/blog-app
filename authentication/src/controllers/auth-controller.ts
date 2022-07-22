@@ -11,13 +11,13 @@ import jwt from "jsonwebtoken"
 
 
 export const userTestRoute = async (req: Request, res: Response) => {
-  const allUse = await prismaClient.user.findMany({
-    select: { email: true, password: false, fullName: true, id: true },
-  })
+  // const allUse = await prismaClient.user.findMany({
+  //   select: { email: true, password: false, fullName: true, id: true },
+  // })
 
   // console.log(req.currentUser)
-
-  res.send(allUse)
+const user = jwt.verify(req.session!.jwt, process.env.JWT_SECRET!)
+  res.json(user)
 }
 
 export const createAccount = async (req: Request, res: Response) => {
@@ -41,7 +41,7 @@ export const createAccount = async (req: Request, res: Response) => {
     },
   })
   const token = jwt.sign(
-    { id: user.id, email: user.email },
+    { id: user.id, email: user.email, fullName : user.fullName },
     process.env.JWT_SECRET!,
     {
       expiresIn: "24h",
@@ -87,7 +87,7 @@ export const login = async (req: Request, res: Response) => {
   }
 
   const token = jwt.sign(
-    { id: user.id, email: user.email },
+    { id: user.id, email: user.email, fullName: user.fullName },
     process.env.JWT_SECRET!,
     {
       expiresIn: "24h",

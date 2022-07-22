@@ -1,28 +1,66 @@
+interface UserData {
+  id: string,
+  fullName : string,
+  email: string,
+
+}
+
 
 export const state = () => ({
-  counter: 0
+  user: null as UserData | null,
+  isLoggedIn: false,
 })
 
 
 
 export const getters = {
-  getCounter(state : any) {
-    return state.counter
-  }
+  getUser(state: { user: UserData, isLoggedIn : boolean }) {
+    return { ...state.user, isLoggedIn: state.isLoggedIn }
+  },
 }
 
 export const mutations = {
-  increment(state : any) {
-    state.counter++
+  setUser(state: { user: UserData, isLoggedIn : boolean }, user: UserData) {
+    state.user = user
+    state.isLoggedIn = true
+  },
+
+  setLogin (state: { user: UserData, isLoggedIn : boolean }, isLoggedIn: boolean) {
+    state.isLoggedIn = isLoggedIn
+  },
+
+  logout(state: { user: UserData | null, isLoggedIn : boolean }) {
+    state.user = null
+    state.isLoggedIn = false
+
   }
 }
 
 export const actions = {
-  async fetchCounter(state : any) {
-    // make request
-    const res = { data: 10 };
-    state.counter = res.data;
-    return res.data;
-  }
+  async nuxtServerInit({ commit } : any, { req } : any) {
+    // console.log(req.headers.cookie)
+    //write a request to check to current user
+    // if user is logged in, set the user in the store
+
+
+
+    if (req.headers?.cookie) {
+       try {
+         const response = await fetch('http://blogs.com/api/v1/auth/test', {
+           method: 'GET',
+           headers: {
+             cookie: req.headers.cookie,
+           },
+         })
+         const user = await response.json()
+         commit('setUser', user)
+       } catch (error) {
+         console.log(error)
+       }
+
+      // console.log(req.currentUser)
+
+    }
+  },
 }
 
