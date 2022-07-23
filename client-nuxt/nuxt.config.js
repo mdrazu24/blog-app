@@ -32,7 +32,7 @@ export default {
   css: ['@/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/nuxt-client-init.client.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -43,7 +43,6 @@ export default {
     '@nuxt/typescript-build',
     '@nuxt/postcss8',
     '@braid/vue-formulate/nuxt',
-
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

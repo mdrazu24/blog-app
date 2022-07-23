@@ -45,6 +45,7 @@ export default {
           method: 'get',
           url: '/api/v1/auth/logout',
         })
+        localStorage.removeItem('user')
         this.$router.push('/login')
       } catch (err) {
         console.log(err)

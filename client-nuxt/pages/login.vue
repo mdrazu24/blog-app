@@ -55,7 +55,6 @@ export default {
   },
 
 
-
   methods: {
     async loginHandler() {
       try {
@@ -64,6 +63,8 @@ export default {
         // console.log(data)
         this.$store.commit('setUser', data.user)
         this.isLoading = false
+        // console.log(data)
+        localStorage.setItem('user', JSON.stringify(data.user.userData))
         this.$router.push('/')
       } catch (err) {
         console.log(err)
