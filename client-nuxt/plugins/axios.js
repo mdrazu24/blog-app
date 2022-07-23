@@ -1,8 +1,6 @@
 export default function ({ $axios, redirect, store }) {
 
   $axios.onError((error) => {
-    console.log("hlw from axios interceptor")
-
         const res = error.response
         // console.log(res)
     if (
@@ -15,7 +13,6 @@ export default function ({ $axios, redirect, store }) {
         res.config &&
         !res.config.__isRetryRequest
     ) {
-      localStorage.removeItem('user')
       store.dispatch('logOut')
       redirect('/login')
 

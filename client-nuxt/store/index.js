@@ -42,15 +42,14 @@ export const actions = {
       await dispatch('checkUser', req.headers.cookie)
     }
   },
-  // nuxtClientInit({ commit }) {
-  //   const userData = JSON.parse(localStorage.getItem('user') || '{}')
-  //   if (userData.id) {
-  //     commit('setUser', userData)
-  //   }
-  // },
+  nuxtClientInit({ commit, ...context }) {
+    const userData = JSON.parse(localStorage.getItem('user') || '{}')
+    if (userData.id && context.state.isLoggedIn) {
+      commit('setUser', userData)
+    }
+  },
 
   logOut({ commit }) {
-    localStorage.removeItem('user')
     commit('logout')
   },
   async checkUser({ commit }, cookie) {
@@ -66,7 +65,7 @@ export const actions = {
         commit('setUser', data)
     } catch (error) {
       // console.log(error)
-      console.log(error)
+      console.log("Your're not authenticated!")
     }
 
   },
