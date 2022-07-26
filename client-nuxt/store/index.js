@@ -33,7 +33,6 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ dispatch }, {req} ) {
-
     // console.log(req.headers.cookie)
     //write a request to check to current user
     // if user is logged in, set the user in the store
@@ -55,7 +54,7 @@ export const actions = {
   async checkUser({ commit }, cookie) {
     try {
       const { data } = await this.$axios.get(
-        'http://blogs.com/api/v1/auth/test',
+        'http://okay.blogs.com/api/v1/auth/test',
         {
           headers: {
             cookie,
@@ -64,7 +63,8 @@ export const actions = {
       )
         commit('setUser', data)
     } catch (error) {
-      // console.log(error)
+      //
+      // console.log(error.response)
       console.log("Your're not authenticated!")
     }
 
