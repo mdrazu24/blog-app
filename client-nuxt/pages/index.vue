@@ -27,7 +27,6 @@ export default {
   },
 
   methods: {
-
     postDetails(id) {
       this.$router.push('/posts/' + id)
     },
@@ -43,8 +42,6 @@ export default {
         console.log(err)
         // console.log(err)
       }
-
-
     }
 
 
@@ -54,7 +51,6 @@ export default {
   async asyncData({ $axios }) {
       try {
         const { data } = await $axios.get('http://okay.blogs.com/api/v1/posts/all')
-
         return {
           posts: data.posts,
         }
