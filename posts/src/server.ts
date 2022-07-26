@@ -43,7 +43,7 @@ export const redisClient = createClient({
 
 const connectRedis = async () => { 
   
-  redisClient.on("error", (err) => {
+  redisClient.on("error", (err : Error) => {
     console.log("Error " + err)
   }
   )
