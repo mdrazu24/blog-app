@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { store } from '../../client/store/index';
 <template>
   <div class="flex items-center content-center justify-center w-full">
 
@@ -54,7 +52,6 @@ export default {
     }
   },
 
-
   methods: {
     async loginHandler() {
       try {
@@ -74,6 +71,8 @@ export default {
       }
     },
   },
+
+
 }
 </script>
 

@@ -44,7 +44,7 @@ export const createAccount = async (req: Request, res: Response) => {
     { id: user.id, email: user.email, fullName : user.fullName },
     process.env.JWT_SECRET!,
     {
-      expiresIn: "2m",
+      expiresIn: "24h",
     }
   )
   //setup a session
@@ -90,7 +90,7 @@ export const login = async (req: Request, res: Response) => {
     { id: user.id, email: user.email, fullName: user.fullName },
     process.env.JWT_SECRET!,
     {
-      expiresIn: "2m",
+      expiresIn: "24h",
     }
   )
   //setup a session

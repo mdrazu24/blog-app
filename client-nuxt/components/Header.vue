@@ -16,9 +16,12 @@
           </nuxt-link>
         </template>
         <template v-else>
-        <a @click="logOutHandler" class="btn btn-md btn-secondary">Logout</a>
-        </template>
+                    <nuxt-link to="/add-post">
 
+          <a class="btn btn-md btn-secondary">+ Post</a>
+                    </nuxt-link>
+          <a @click="logOutHandler" class="btn btn-md btn-ghost text-red-500 ">Logout</a>
+        </template>
       </div>
     </div>
   </div>
@@ -33,7 +36,7 @@ export default {
     }
   },
   watch: {
-    $route : function () {
+    $route: function () {
       this.isLoggedIn = this.$store.state.isLoggedIn
     },
   },

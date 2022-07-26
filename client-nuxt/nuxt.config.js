@@ -1,7 +1,12 @@
 export default {
   router: {
     base: '/app/',
+
   },
+  // server : {
+  //   host : '0',
+  //   port : 3000
+  // },
 
   loading: {
     color: 'blue',
@@ -40,7 +45,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
+    // '@nuxt/typescript-build',
     '@nuxt/postcss8',
     '@braid/vue-formulate/nuxt',
   ],
