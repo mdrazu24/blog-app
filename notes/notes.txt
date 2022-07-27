@@ -85,3 +85,6 @@ connect websockets //
 ****************************NOTES**************************
 Use bull to process data on a diffrent thread as queue.
 Use worker_threads to process data on a diffrent thread to get back the processed data immedietly.
+
+important
+worker_threads, Web Worker, Service Worker, Shared worker/

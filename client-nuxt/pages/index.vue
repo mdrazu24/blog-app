@@ -8,6 +8,7 @@
     <h6>{{post.author.fullName}}</h6>
 
     <button @click.stop="deletePost(post.id)" class="btn btn-primary" >Delete</button>
+
   </div>
 </div>
 </div>
@@ -25,6 +26,14 @@ export default {
       posts: [],
     }
   },
+
+  // computed : { use it to get reactive data .
+  //   somethng(haha) {
+  //     console.log(haha)
+  //     return this.posts.length + " " + haha
+  //   }
+
+  // },
 
   methods: {
     postDetails(id) {
@@ -46,6 +55,15 @@ export default {
 
 
   },
+
+  // watch : { //watch the variable and do something when it changes
+  //   posts (newOne, oldOne) {
+  //     console.log(newOne.length)
+  //     console.log(oldOne.length)
+
+  //   }
+
+  // },
 
 
   async asyncData({ $axios }) {
