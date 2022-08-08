@@ -12,9 +12,6 @@ const config = {
 			files: () => true
 		},
 
-		paths: {
-			base: '/client-svelte'
-		}
 	}
 };
 
