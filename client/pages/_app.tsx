@@ -5,6 +5,8 @@ import type { AppProps } from "next/app"
 import Header from "../components/base/Header"
 import ProgressBar from "@badrap/bar-of-progress"
 import Router from "next/router"
+import Link from 'next/link'
+
 import {
   QueryClient,
   QueryClientProvider
